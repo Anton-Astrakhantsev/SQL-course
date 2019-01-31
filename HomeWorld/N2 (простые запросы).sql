@@ -36,7 +36,7 @@ limit 10;
 select 'N4' as query;
 
 select imdbId
-from links as l
+from links
 where movieId in (
 select movieId
 from ratings
