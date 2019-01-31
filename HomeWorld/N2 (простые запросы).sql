@@ -37,9 +37,7 @@ select 'N4' as query;
 
 select imdbId
 from links as l
-left join ratings as r
-on (l.movieId=r.movieId)
-where l.movieId in (
+where movieId in (
 select movieId
 from ratings
 group by movieId
