@@ -61,6 +61,7 @@ copy (
 		keywords
 	--into
 		--top_rated_tags
+	-- С ними функция COPY не работает
 	from
 		top_rated as tr
 		left join keywords as k
