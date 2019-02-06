@@ -12,7 +12,13 @@ with temp_table as(
 select
 	userid,
 	movieid,
-	round((r - r_min)/(r_max - r_min), 3) as normed_rating,
+	case when
+		r_max = r_min
+	then
+		null
+	else
+		round((r - r_min)/(r_max - r_min), 3)
+	end as normed_rating,
 	round(avg_rating, 3)
 from
 	temp_table
