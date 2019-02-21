@@ -1,0 +1,8 @@
+# Импорт БД
+mongoimport --db movies --collection tags --file F:\NETOLOGY_DATA\simple_tags.json
+
+# Количество фильмов с тегом 'woman'
+db.tags.find({name: 'woman'}).count()
+
+# TOP-3 самых распространенных тега
+db.tags.aggregate([{$group: {_id: "$name", tag_count: { $sum: 1 }}},{$sort: {tag_count: -1}}])
