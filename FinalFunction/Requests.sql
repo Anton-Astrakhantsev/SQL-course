@@ -89,6 +89,7 @@ group by
 having
   count(distinct e.chief_doc_id) > 1;
 
+
 -- Запрос 6
 select
     d.name,
