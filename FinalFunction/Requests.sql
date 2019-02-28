@@ -162,7 +162,7 @@ select
   round(avg(tp.avg),2) as three_plus_intern_per_chief
 from
   one_two as ot
-  left join three_plus as tp on (ot.check=tp.check)
+  left join three_plus as tp on (ot.check=tp.check);
 
 
 -- Запрос 10
