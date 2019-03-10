@@ -1,7 +1,7 @@
 -- Запрос 1
 select
   d.name,
-  count(distinct e.id)
+  count(distinct e.chief_doc_id)
 from
   department as d
   left join employee as e
