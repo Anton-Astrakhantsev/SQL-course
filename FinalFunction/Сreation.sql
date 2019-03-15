@@ -9,7 +9,8 @@ insert into department values
 ('3', 'Cardiology'),
 ('4', 'Gastroenterology'),
 ('5', 'Hematology'),
-('6', 'Oncology');
+('6', 'Oncology'),
+('7', 'Cleaning');
 
 create table employee (
 id integer primary key,
