@@ -42,13 +42,13 @@ insert into employee values
 ('19', '6', '9', 'Jessy', 19),
 ('20', '6', '9', 'Ann', 18);
 
-create table chief (
+create table chief_doc (
 id integer primary key,
 department_id integer,
 name varchar,
 experience integer);
 
-insert into chief values
+insert into chief_doc values
 (1, 1, 'John "J.D." Dorian', 9),
 (2, 1, 'Christopher Turk', 9),
 (3, 2, 'Elliot Reid', 8),
