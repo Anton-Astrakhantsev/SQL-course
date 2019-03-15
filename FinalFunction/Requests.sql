@@ -94,19 +94,19 @@ having
 -- у которых средняя оценка не меньше 4 и количество публикаций больше 5,
 -- а самих интернов в департаменте должно быть больше одного
 select
-    d.name,
-    sum(e.num_public) as sum_public
-  from
-    employee as e
-    left join department as d on (e.department_id=d.id)
-    left join mark as m on (e.id=m.employee_id)
-  where
-    m.average_mark >= 4
-    and e.num_public > 5
-  group by d.name
-  having
-    count(distinct e.id) >= 2
-  order by sum(e.num_public) desc;
+  d.name,
+  sum(e.num_public) as sum_public
+from
+  employee as e
+  left join department as d on (e.department_id=d.id)
+  left join mark as m on (e.id=m.employee_id)
+where
+  m.average_mark >= 4
+  and e.num_public > 5
+group by d.name
+having
+  count(distinct e.id) >= 2
+order by sum(e.num_public) desc;
   
 
 -- Запрос 7: Вывести доктора, его опыт, количество интернов под его руководством и средняя оценка этих интернов
