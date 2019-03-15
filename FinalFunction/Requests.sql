@@ -1,4 +1,4 @@
--- Запрос 1
+-- Запрос 1: Аналог запроса 1 из лабораторной работы
 select
   d.name,
   count(distinct e.chief_doc_id)
@@ -10,7 +10,7 @@ group by
   d.name;
 
 
--- Запрос 2
+-- Запрос 2: Аналог запроса 2 из лабораторной работы
 select
   d.id,
   d.name,
@@ -27,7 +27,7 @@ having
 order by d.id;
 
 
--- Запрос 3
+-- Запрос 3: Аналог запроса 3 из лабораторной работы
 select
   d.id as id,
   d.name as name,
@@ -49,7 +49,7 @@ having
   );
 
 
---Запрос 4
+--Запрос 4: Аналог запроса 4 из лабораторной работы
 with emp as (
 select
   d.id as dep_id,
@@ -74,7 +74,7 @@ where
 order by dep_id asc;
 
 
--- Запрос 5
+-- Запрос 5: Аналог запроса 5 из лабораторной работы
 select
   d.id,
   d.name,
@@ -90,14 +90,16 @@ having
   count(distinct e.chief_doc_id) > 1;
 
 
--- Запрос 6
+-- Запрос 6: Вывести список департаментов и количество публикаций у интернов из них,
+-- у которых средняя оценка не меньше 4 и количество публикаций больше 5,
+-- а самих интернов в департаменте должно быть больше одного
 select
     d.name,
     sum(e.num_public) as sum_public
   from
     employee as e
     left join department as d on (e.department_id=d.id)
-    left join marks as m on (e.id=m.employee_id)
+    left join mark as m on (e.id=m.employee_id)
   where
     m.average_mark >= 4
     and e.num_public > 5
@@ -107,7 +109,7 @@ select
   order by sum(e.num_public) desc;
   
 
--- Запрос 7:
+-- Запрос 7: Вывести доктора, его опыт, количество интернов под его руководством и средняя оценка этих интернов
 select
   c.name as chief,
   c.experience,
@@ -115,8 +117,8 @@ select
   round(avg(average_mark),2) as intern_average_mark
 from
   employee as e
-  left join chiefs as c on (e.chief_doc_id=c.id)
-  left join marks as m on (e.id=m.employee_id)
+  left join chief as c on (e.chief_doc_id=c.id)
+  left join mark as m on (e.id=m.employee_id)
 group by c.name, c.id
 order by c.id asc;
 
@@ -130,8 +132,8 @@ select distinct
   as chief_intern_pub_range
 from
   employee as e
-  left join chiefs as c on (e.chief_doc_id=c.id)
-  left join marks as m on (e.id=m.employee_id);
+  left join chief as c on (e.chief_doc_id=c.id)
+  left join mark as m on (e.id=m.employee_id);
 
 
 -- Запрос 9: Найти среднюю оценку у интернов тех докторов, у которых меньше трех и от трех интернов в подчинении
@@ -141,7 +143,7 @@ select
   1 as check
 from
   employee as e
-  left join marks as m on (e.id=m.employee_id)
+  left join mark as m on (e.id=m.employee_id)
 group by chief_doc_id
 having
   count(e.id) < 3
@@ -152,7 +154,7 @@ select
   1 as check
 from
   employee as e
-  left join marks as m on (e.id=m.employee_id)
+  left join mark as m on (e.id=m.employee_id)
 group by chief_doc_id
 having
   count(e.id) >= 3
@@ -165,17 +167,17 @@ from
   left join three_plus as tp on (ot.check=tp.check);
 
 
--- Запрос 10: Найти корреляцию между количеством публикаций студентов и его средней оценкой в университете
-with interns as (
+-- Запрос 10: Найти корреляцию между количеством публикаций интерна и его средней оценкой в университете
+with intern as (
 select
   e.id,
   e.num_public as intern_num_public,
   m.average_mark as intern_average_mark
 from
   employee as e
-  left join marks as m on (e.id=m.employee_id)
+  left join mark as m on (e.id=m.employee_id)
 )
 select
   corr(intern_num_public, intern_average_mark)
 from
-  interns;
+  intern;
