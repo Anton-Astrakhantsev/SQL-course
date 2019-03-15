@@ -42,13 +42,13 @@ insert into employee values
 ('19', '6', '9', 'Jessy', 19),
 ('20', '6', '9', 'Ann', 18);
 
-create table chiefs (
+create table chief (
 id integer primary key,
 department_id integer,
 name varchar,
 experience integer);
 
-insert into chiefs values
+insert into chief values
 (1, 1, 'John "J.D." Dorian', 9),
 (2, 1, 'Christopher Turk', 9),
 (3, 2, 'Elliot Reid', 8),
@@ -60,12 +60,12 @@ insert into chiefs values
 (9, 6, 'Drew Suffin', 1),
 (10, 7, '"Janitor"', 7);
 
-create table marks (
+create table mark (
 university_id integer primary key,
 employee_id integer,
 average_mark numeric);
 
-insert into marks values
+insert into mark values
 (1, 6, 3.1),
 (2, 18, 3.7),
 (3, 3, 3.1),
