@@ -107,7 +107,7 @@ select
   order by sum(e.num_public) desc;
   
 
--- Запрос 7
+-- Запрос 7:
 select
   c.name as chief,
   c.experience,
@@ -121,7 +121,7 @@ group by c.name, c.id
 order by c.id asc;
 
 
--- Запрос 8
+-- Запрос 8: Вывести докторов и диапозон максимльного и минимального количества публикаций у интернов этого доктора
 select distinct
   c.name as chief,
   min(num_public) over (partition by chief_doc_id)
@@ -134,7 +134,7 @@ from
   left join marks as m on (e.id=m.employee_id);
 
 
--- Запрос 9
+-- Запрос 9: Найти среднюю оценку у интернов тех докторов, у которых меньше трех и от трех интернов в подчинении
 with one_two as (
 select
   avg(average_mark),
@@ -165,7 +165,7 @@ from
   left join three_plus as tp on (ot.check=tp.check);
 
 
--- Запрос 10
+-- Запрос 10: Найти корреляцию между количеством публикаций студентов и его средней оценкой в университете
 with interns as (
 select
   e.id,
